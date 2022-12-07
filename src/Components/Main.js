@@ -1,31 +1,24 @@
-import React, {Component} from "react";
-import Title from './Title';
-import Photowall from "./Photowall";
-import AddPhoto from "./AddPhoto";
-import {Link, Route} from 'react-router-dom'
-import {removePost} from "../redux/actions"
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
+import PhotoWall from '../Components/Photowall'
+import AddPost from '../Components/AddPost'
+import { Route,Switch } from 'react-router-dom'
+
 
 class Main extends Component {
-    constructor() {
-        super()
-    }
-
-    render () {
-        console.log(this.props)
-      return (
-            <div>
-                <h1>
-                    <Link to="/">Photowall</Link>
-                </h1>
-                <Route exact path = "/" render = {() => (
-                    <Photowall {...this.props}/>
-                )}/>
-                <Route path = "/AddPhoto" render = {({history}) => (
-                    <AddPhoto {...this.props} onHistory={history}/>
-                )}/> 
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1 className="font-face">
+          <Link to="/">Photowall</Link>
+        </h1>
+        <Switch>
+        <Route exact path='/' render={(params) => (<PhotoWall {...this.props}{...params}/>)}/>
+        <Route       path='/create' render={(params) => (<AddPost {...this.props}{...params}/>)}/>        
+        </Switch>
+      </div>
+    );
   }
+}
 
-export default Main
+export default Main;

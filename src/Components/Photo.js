@@ -1,21 +1,29 @@
-import React from "react";
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
-function Photo(props){
-    const post = props.post
-        return <figure className="figure">
-            <img className="photo" src={post.imageLink} alt={post.description}/>
-            <figcaption><p>{post.description}</p></figcaption>
-            <div className="button-container">
-                <button onClick= {()=>{
-                    props.removePost(props.index)
-                }}>Remove Photo</button>
-            </div>
-        </figure>
+
+class Photo extends Component {
+
+  render() {
+    console.log(this.props)
+    const { post, i } = this.props; 
+    return (
+        <figure className="grid-figure">
+        <div className="grid-photo-wrap">
+            <img src={post.imageLink} alt={post.description} className="grid-photo" />
+        </div>
+        <figcaption>
+          <p>{post.description}</p>
+          <div className="control-buttons">
+          <button className="Remove" onClick={() => {
+            this.props.history.push('/')
+            this.props.removePicture(i)
+          }}>Remove</button>
+          </div>
+        </figcaption>
+      </figure>
+    );
+  }
 }
 
-Photo.propTypes = {
-    post: PropTypes.object.isRequired,
-}
-
-export default Photo
+export default Photo;
