@@ -13,7 +13,7 @@ function comments(state={}, action) {
         
         default: return state
     }
-    return state
+    // return state
 }
 
 
