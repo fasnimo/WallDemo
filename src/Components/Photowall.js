@@ -3,7 +3,7 @@ import Photo from './Photo'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 //anchor tag, href attribute
-function PhotoWall(props) {
+function Photowall(props) {
 return  <div> 
              <Link className = "addIcon" to="/AddPhoto"> </Link> 
              <div className="photoGrid" >
@@ -16,9 +16,9 @@ return  <div>
         </div>
 }
 
-PhotoWall.propTypes = {
+Photowall.propTypes = {
     posts: PropTypes.array.isRequired,
 }
 
 
- export default PhotoWall
+ export default Photowall

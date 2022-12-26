@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import PhotoWall from './PhotoWall'
+import Photowall from './Photowall'
 import AddPhoto from './AddPhoto'
 import {Route, Link} from 'react-router-dom'
 import Single from './Single'
@@ -18,7 +18,7 @@ class Main extends Component {
              </h1>
             <Route exact path = "/" render={() => (
                  <div>
-                      <PhotoWall {...this.props} />   
+                      <Photowall {...this.props} />   
                  </div>
 
             )}/> 
