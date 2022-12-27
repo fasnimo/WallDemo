@@ -10,6 +10,18 @@ export function startAddingPost(post){
   }
 }
 
+export function startLoadingPost() {
+  return (dispatch => {
+    return database.ref('posts').once('value').then((snapshot)=>{
+      let posts = []
+      snapshot.forEach((childSnapshot) => {
+        posts.push(childSnapshot.val())
+      })
+      dispatch(loadPost(posts))
+    })
+  })
+}
+
 export function removePost(index) {
   return {
       type: 'REMOVE_POST',
@@ -29,6 +41,13 @@ export function addComment(comment, postId) {
       type: 'ADD_COMMENT',
       comment,
       postId
+  }
+}
+
+export function loadPost(posts){
+  return {
+    type: 'LOAD_POSTS',
+    posts
   }
 }
 
