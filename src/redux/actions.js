@@ -44,6 +44,20 @@ export function startAddingComment(comment, postId){
   }
 }
 
+export function startLoadingComments() {
+  return (dispatch) => {
+    return database.ref('comments').once('value').then((snapshot) => {
+      let comments = {};
+      snapshot.forEach((childSnapshot) => {
+        comments[childSnapshot.key] = Object.values(childSnapshot.val()) 
+      })
+      dispatch(loadComment(comments))
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+}
+
 export function removePost(index) {
   return {
       type: 'REMOVE_POST',
@@ -73,4 +87,11 @@ export function loadPost(posts){
   }
 }
 
+export function loadComment(comments){
+  return {
+    type: 'LOAD_COMMENTS',
+    comments
+  }
+
+}
 //adding post
